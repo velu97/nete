@@ -1,31 +1,10 @@
 apiVersion: v1
-kind: Service
+kind: Pod
 metadata:
-  name: loadbalancer-svc
+  name: ubuntu
+  namespace: development
 spec:
-  type: Loadbalancer
-  selector:
-    app: hello
-  ports:
-    - name: http
-      protocol: TCP
-      port: 80
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: loadbalancer-pod
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: hello
-  template:
-    metadata:
-      labels:
-        app: hello
-    spec:
-      containers:
-        - name: hello
-          image: velmurugan764/kubeimage:latest
-          imagePullPolicy: Always
+  containers:
+    - name: ubuntu
+      image: velmurugan764/kubeimage:latest
+      
